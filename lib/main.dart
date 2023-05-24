@@ -3,25 +3,20 @@ import 'package:flutter_application_test/main_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  const String title = 'Flutter Demo';
-  runApp(const ProviderScope(
-      child: MyApp(
-    title: title,
-  )));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   // StatelessWidgetは状態変更なしのウィジェット
 
   // Constructor
-  const MyApp({super.key, required this.title}); // requiredは必須引数
-  final String title; // コンストラクタで受け取る用のプロパティ
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false, // デバッグバナーを非表示にする
-      title: title,
+      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
