@@ -1,17 +1,28 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  const String title = 'Flutter Demo';
+  runApp(const MyApp(
+    title: title,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  // StatelessWidgetは状態変更なしのウィジェット
+
+  // Constructor
+  const MyApp({super.key, required this.title}); // requiredは必須引数
+  final String title; // コンストラクタで受け取る用のプロパティ
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    /*
+    String title = 'Flutter Demo';
+    title = 'New Title'; // StatelessWidgetなので、再描画されない
+    */
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: title,
       theme: ThemeData(
         // This is the theme of your application.
         //
