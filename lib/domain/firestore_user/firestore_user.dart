@@ -6,6 +6,9 @@ part 'firestore_user.g.dart';
 @freezed
 abstract class FirestoreUser with _$FirestoreUser {
   const factory FirestoreUser({
+    required dynamic createdAt,
+    required String email,
+    required dynamic updatedAt,
     required String userName,
     required String uid,
   }) = _FirestoreUser;
