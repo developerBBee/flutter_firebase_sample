@@ -6,6 +6,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
 
+// domain
+import 'package:flutter_application_test/domain/firestore_user/firestore_user.dart';
+
 // ViewとModelの橋渡しとなるProvider
 final mainProvider = ChangeNotifierProvider((_) => MainModel());
 
@@ -17,10 +20,17 @@ class MainModel extends ChangeNotifier {
     final uuid = Uuid();
     final String v4 = uuid.v4();
     // Firestoreに保存
-    final Map<String, dynamic> userData = {
-      "userName": "Alice",
-      "uid": v4,
-    };
+    // final Map<String, dynamic> userData = {
+    //   "userName": "Alice",
+    //   "uid": v4,
+    // };
+    final FirestoreUser user = FirestoreUser(
+      userName: 'Alice',
+      uid: v4,
+    );
+    final Map<String, dynamic> userData = user.toJson();
+    final FirestoreUser user2 = FirestoreUser.fromJson(userData);
+    print(user2.userName);
     await FirebaseFirestore.instance
         .collection('users')
         .doc(v4) // ここでドキュメントIDを指定(指定しない場合は自動でIDが振られる)
