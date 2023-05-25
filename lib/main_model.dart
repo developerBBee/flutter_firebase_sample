@@ -20,7 +20,7 @@ class MainModel extends ChangeNotifier {
     };
     await FirebaseFirestore.instance
         .collection('users')
-        .doc('firstUser')
+        .doc('firstUser') // ここでドキュメントIDを指定(指定しない場合は自動でIDが振られる)
         .set(userData);
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text('ユーザーが作成できました')));
