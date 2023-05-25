@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "84169764193",
+    "project_id": "fb-udemy-flutter-test",
+    "storage_bucket": "fb-udemy-flutter-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:84169764193:android:6f96bb0e0cc2134ea3e920",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "84169764193-dmkk86h0c7tofi3q6nagqsltdhig597t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQ550g55Wz9zCzveXHP4foZDgnP1aWoHA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "84169764193-dmkk86h0c7tofi3q6nagqsltdhig597t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
