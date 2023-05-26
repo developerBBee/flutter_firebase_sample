@@ -7,6 +7,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application_test/models/main_model.dart';
 // options
 import 'firebase_options.dart';
+// constants
+import 'package:flutter_application_test/constants/routes.dart' as routes;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,11 +52,13 @@ class MyHomePage extends ConsumerWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround, // 縦方向に均等に配置
         children: [
-          const InkWell(
-            child: Icon(Icons.person),
+           ElevatedButton(
+            onPressed: () => routes.toSignupPage(context: context),
+            child: const Text("Signup Page")
           ),
-          const InkWell(
-            child: Icon(Icons.person),
+           ElevatedButton(
+            onPressed: () => routes.toLoginPage(context: context),
+            child: const Text("Login Page")
           ),
           Center(
               child: mainModel.currentUser == null

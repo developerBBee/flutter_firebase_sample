@@ -9,6 +9,10 @@ class LoginPage extends ConsumerWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Signup"),
+      ),
+    );
   }
 }
