@@ -13,9 +13,9 @@ import 'package:uuid/uuid.dart';
 import 'package:flutter_application_test/domain/firestore_user/firestore_user.dart';
 
 // ViewとModelの橋渡しとなるProvider
-final mainProvider = ChangeNotifierProvider((_) => MainModel());
+final signupProvider = ChangeNotifierProvider((_) => SignupModel());
 
-class MainModel extends ChangeNotifier {
+class SignupModel extends ChangeNotifier {
   int counter = 0; // 変数の先頭に_はprivateなので、つけないようにする
   User? currentUser = null;
   // auth
