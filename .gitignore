@@ -49,4 +49,4 @@ app.*.map.json
 /macos/Runner/GoogleService-Info.plist
 
 # other
-widget_template.txt
+template_*.txt
