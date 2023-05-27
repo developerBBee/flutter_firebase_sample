@@ -13,4 +13,9 @@ final mainProvider = ChangeNotifierProvider((_) => MainModel());
 class MainModel extends ChangeNotifier {
   int counter = 0; // 変数の先頭に_はprivateなので、つけないようにする
   User? currentUser = null;
+
+  void setCurrentUser() {
+    currentUser = FirebaseAuth.instance.currentUser;
+    notifyListeners();
+  }
 }

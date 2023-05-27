@@ -1,5 +1,6 @@
 // flutter
 import 'package:flutter/material.dart';
+import 'package:flutter_application_test/models/main_model.dart';
 // packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // models
@@ -9,7 +10,10 @@ import 'package:flutter_application_test/models/login_model.dart';
 class LoginPage extends ConsumerWidget {
   const LoginPage({
     Key? key,
+    required MainModel this.mainModel
   }) : super(key: key);
+  final MainModel mainModel;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final LoginModel loginModel = ref.watch(loginProvider); // Providerを監視
@@ -19,7 +23,7 @@ class LoginPage extends ConsumerWidget {
         TextEditingController(text: loginModel.password);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Signup"),
+        title: const Text("Login"),
       ),
       body: Column(
         children: [
@@ -39,14 +43,10 @@ class LoginPage extends ConsumerWidget {
                 onTap: () => loginModel.toggleObscure(),
               )),
           ),
-          Center(
-              child: loginModel.currentUser == null
-                  ? Text("is Null")
-                  : Text("is Not Null")),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async => await loginModel.login(),
+        onPressed: () async => await loginModel.login(context: context, mainModel: mainModel),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),

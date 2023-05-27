@@ -9,6 +9,8 @@ import 'package:flutter_application_test/models/main_model.dart';
 import 'firebase_options.dart';
 // constants
 import 'package:flutter_application_test/constants/routes.dart' as routes;
+// pages
+import 'package:flutter_application_test/views/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,33 +20,36 @@ void main() async {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   // StatelessWidgetは状態変更なしのウィジェット
 
   // Constructor
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final MainModel mainModel = ref.watch(mainProvider); // Providerを監視
     return MaterialApp(
       debugShowCheckedModeBanner: false, // デバッグバナーを非表示にする
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: mainModel.currentUser == null
+          ? LoginPage(mainModel: mainModel)
+          : MyHomePage(title: 'Flutter Demo Home Page', mainModel: mainModel)
     );
   }
 }
 
-class MyHomePage extends ConsumerWidget {
+class MyHomePage extends StatelessWidget {
   // ConsumerWidgetはStateFulWidgetを継承している
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key, required this.title, required this.mainModel });
 
+  final MainModel mainModel;
   final String title;
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final MainModel mainModel = ref.watch(mainProvider); // Providerを監視
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -57,13 +62,9 @@ class MyHomePage extends ConsumerWidget {
             child: const Text("Signup Page")
           ),
            ElevatedButton(
-            onPressed: () => routes.toLoginPage(context: context),
+            onPressed: () => routes.toLoginPage(context: context, mainModel: mainModel),
             child: const Text("Login Page")
           ),
-          Center(
-              child: mainModel.currentUser == null
-                  ? const Text("is Null")
-                  : const Text("is Not Null")),
         ],
       ),
     );
