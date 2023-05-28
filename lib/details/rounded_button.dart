@@ -6,10 +6,12 @@ class RoundedButton extends StatelessWidget {
     required this.onPressed,
     required this.widthRate,
     required this.color,
+    required this.buttonText,
   }) : super(key: key);
   final void Function()? onPressed;
   final double widthRate; // 0.0 - 1.0
   final Color color;
+  final String buttonText;
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +27,9 @@ class RoundedButton extends StatelessWidget {
             backgroundColor: color
           ),
           onPressed: onPressed,
-          child: const Padding(
-            padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-            child: Text("Button"),//Container(),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+            child: Text(buttonText),
           )
         ),
       )

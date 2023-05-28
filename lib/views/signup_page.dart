@@ -49,6 +49,7 @@ class SignupPage extends ConsumerWidget {
             onPressed: () async => await signupModel.createUser(context: context),
             widthRate: 0.8,
             color: Colors.pink,
+            buttonText: "Signup",
           ),
         ],
       ),

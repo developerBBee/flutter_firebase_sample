@@ -1,5 +1,6 @@
 // flutter
 import 'package:flutter/material.dart';
+import 'package:flutter_application_test/details/rounded_button.dart';
 // package
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -54,19 +55,25 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround, // 縦方向に均等に配置
-        children: [
-           ElevatedButton(
-            onPressed: () => routes.toSignupPage(context: context),
-            child: const Text("Signup Page")
-          ),
-           ElevatedButton(
-            onPressed: () => routes.toLoginPage(context: context, mainModel: mainModel),
-            child: const Text("Login Page")
-          ),
-        ],
-      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround, // 縦方向に均等に配置
+          children: [
+            RoundedButton(
+              onPressed: () => routes.toSignupPage(context: context),
+              widthRate: 0.5,
+              color: Colors.brown,
+              buttonText: "Signup Page",
+            ),
+            RoundedButton(
+              onPressed: () => routes.toLoginPage(context: context, mainModel: mainModel),
+              widthRate: 0.5,
+              color: Colors.blueGrey,
+              buttonText: "Login Page",
+            ),
+          ],
+        ),
+      )
     );
   }
 }

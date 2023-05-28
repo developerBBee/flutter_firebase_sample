@@ -55,6 +55,7 @@ class LoginPage extends ConsumerWidget {
             onPressed: () async => await loginModel.login(context: context, mainModel: mainModel),
             widthRate: 0.8,
             color: Colors.cyan,
+            buttonText: "Login",
           )
         ],
       ),
