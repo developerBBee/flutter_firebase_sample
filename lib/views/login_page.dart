@@ -1,5 +1,9 @@
 // flutter
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_application_test/details/rounded_password_field.dart';
+import 'package:flutter_application_test/details/rounded_text_field.dart';
 import 'package:flutter_application_test/models/main_model.dart';
 // packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,23 +30,25 @@ class LoginPage extends ConsumerWidget {
         title: const Text("Login"),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          TextFormField(
+          RoundedTextField(
             keyboardType: TextInputType.emailAddress,
             onChanged: (text) => loginModel.email = text,
             controller: emailController,
+            color: Colors.white,
+            borderColor: Colors.red,
+            shadowColor: Colors.green,
           ),
-          TextFormField(
-            keyboardType: TextInputType.visiblePassword,
+          RoundedPasswordField(
             onChanged: (text) => loginModel.password = text,
             controller: passwordController,
             obscureText: loginModel.isObscure,
-            decoration: InputDecoration(
-              suffix: InkWell(
-                child: loginModel.isObscure ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
-                onTap: () => loginModel.toggleObscure(),
-              )),
-          ),
+            toggleObsureText: () => loginModel.toggleObscure(),
+            color: Colors.white,
+            borderColor: Colors.red,
+            shadowColor: Colors.blue,
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(

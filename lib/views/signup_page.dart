@@ -1,5 +1,6 @@
 // flutter
 import 'package:flutter/material.dart';
+import 'package:flutter_application_test/details/rounded_password_field.dart';
 // packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // models
@@ -23,6 +24,7 @@ class SignupPage extends ConsumerWidget {
         title: const Text("Signup"),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           RoundedTextField(
             keyboardType: TextInputType.emailAddress,
@@ -32,21 +34,15 @@ class SignupPage extends ConsumerWidget {
             borderColor: Colors.red,
             shadowColor: Colors.purple,
           ),
-          TextFormField(
-            keyboardType: TextInputType.visiblePassword,
+          RoundedPasswordField(
             onChanged: (text) => signupModel.password = text,
             controller: passwordController,
             obscureText: signupModel.isObscure,
-            decoration: InputDecoration(
-              suffix: InkWell(
-                child: signupModel.isObscure ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
-                onTap: () => signupModel.toggleObscure(),
-              )),
-          ),
-          Center(
-              child: signupModel.currentUser == null
-                  ? Text("is Null")
-                  : Text("is Not Null")),
+            toggleObsureText: () => signupModel.toggleObscure(),
+            color: Colors.white,
+            borderColor: Colors.red,
+            shadowColor: Colors.orange,
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
