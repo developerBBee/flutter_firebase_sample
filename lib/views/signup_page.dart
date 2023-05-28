@@ -8,6 +8,8 @@ import 'package:flutter_application_test/models/signup_model.dart';
 // components
 import 'package:flutter_application_test/details/rounded_text_field.dart';
 import 'package:flutter_application_test/details/rounded_button.dart';
+// constants
+import 'package:flutter_application_test/constants/strings.dart';
 
 class SignupPage extends ConsumerWidget {
   const SignupPage({
@@ -22,7 +24,7 @@ class SignupPage extends ConsumerWidget {
         TextEditingController(text: signupModel.password);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Signup"),
+        title: const Text(signupTitle),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -34,7 +36,7 @@ class SignupPage extends ConsumerWidget {
             color: Colors.white,
             borderColor: Colors.red,
             shadowColor: Colors.purple,
-            hintText: "Input your email for signup",
+            hintText: signupEmailHint,
           ),
           RoundedPasswordField(
             onChanged: (text) => signupModel.password = text,
@@ -49,7 +51,7 @@ class SignupPage extends ConsumerWidget {
             onPressed: () async => await signupModel.createUser(context: context),
             widthRate: 0.8,
             color: Colors.pink,
-            buttonText: "Signup",
+            buttonText: signupText,
           ),
         ],
       ),

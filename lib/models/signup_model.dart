@@ -9,6 +9,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // domain
 import 'package:flutter_application_test/domain/firestore_user/firestore_user.dart';
 
+// constants
+import 'package:flutter_application_test/constants/strings.dart';
+
 // ViewとModelの橋渡しとなるProvider
 final signupProvider = ChangeNotifierProvider((_) => SignupModel());
 
@@ -35,16 +38,16 @@ class SignupModel extends ChangeNotifier {
       createdAt: now,
       email: email,
       updatedAt: now,
-      userName: 'Alice',
+      userName: aliceName,
       uid: uid,
     );
     final Map<String, dynamic> userData = user.toJson();
     await FirebaseFirestore.instance
-        .collection('users')
+        .collection(usersFieldKey)
         .doc(uid) // ここでドキュメントIDを指定(指定しない場合は自動でIDが振られる)
         .set(userData);
     ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text('ユーザーが作成できました')));
+        .showSnackBar(SnackBar(content: Text(message)));
 
     // setState()はStatefulWidgetでのみ使えるのでここでは使えない
     // 代わりにnotifyListeners()を使う

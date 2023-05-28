@@ -1,6 +1,4 @@
 // flutter
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_test/details/rounded_button.dart';
 import 'package:flutter_application_test/details/rounded_password_field.dart';
@@ -10,7 +8,8 @@ import 'package:flutter_application_test/models/main_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // models
 import 'package:flutter_application_test/models/login_model.dart';
-
+// constants
+import 'package:flutter_application_test/constants/strings.dart';
 
 class LoginPage extends ConsumerWidget {
   const LoginPage({
@@ -28,7 +27,7 @@ class LoginPage extends ConsumerWidget {
         TextEditingController(text: loginModel.password);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login"),
+        title: const Text(loginTitle),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -40,7 +39,7 @@ class LoginPage extends ConsumerWidget {
             color: Colors.white,
             borderColor: Colors.red,
             shadowColor: Colors.green,
-            hintText: "Input your email for login",
+            hintText: loginEmailHint,
           ),
           RoundedPasswordField(
             onChanged: (text) => loginModel.password = text,
@@ -55,7 +54,7 @@ class LoginPage extends ConsumerWidget {
             onPressed: () async => await loginModel.login(context: context, mainModel: mainModel),
             widthRate: 0.8,
             color: Colors.cyan,
-            buttonText: "Login",
+            buttonText: loginText,
           )
         ],
       ),

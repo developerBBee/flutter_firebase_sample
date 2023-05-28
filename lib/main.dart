@@ -1,5 +1,6 @@
 // flutter
 import 'package:flutter/material.dart';
+import 'package:flutter_application_test/constants/strings.dart';
 import 'package:flutter_application_test/details/rounded_button.dart';
 // package
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -63,13 +64,13 @@ class MyHomePage extends StatelessWidget {
               onPressed: () => routes.toSignupPage(context: context),
               widthRate: 0.5,
               color: Colors.brown,
-              buttonText: "Signup Page",
+              buttonText: signupTitle,
             ),
             RoundedButton(
               onPressed: () => routes.toLoginPage(context: context, mainModel: mainModel),
               widthRate: 0.5,
               color: Colors.blueGrey,
-              buttonText: "Login Page",
+              buttonText: loginTitle,
             ),
           ],
         ),
