@@ -33,6 +33,7 @@ class SignupPage extends ConsumerWidget {
             color: Colors.white,
             borderColor: Colors.red,
             shadowColor: Colors.purple,
+            hintText: "Input your email for signup",
           ),
           RoundedPasswordField(
             onChanged: (text) => signupModel.password = text,

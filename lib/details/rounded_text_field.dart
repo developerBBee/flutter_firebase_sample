@@ -10,6 +10,7 @@ class RoundedTextField extends StatelessWidget{
     required this.color,
     required this.borderColor,
     required this.shadowColor,
+    required this.hintText,
   }) : super(key: key);
   final TextInputType keyboardType;
   final void Function(String)? onChanged;
@@ -17,6 +18,7 @@ class RoundedTextField extends StatelessWidget{
   final Color color;
   final Color borderColor;
   final Color shadowColor;
+  final String hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +27,14 @@ class RoundedTextField extends StatelessWidget{
       borderColor: borderColor,
       shadowColor: shadowColor,
       child: TextFormField(
+        
         keyboardType: keyboardType,
         onChanged: onChanged,
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
+          hintText: hintText,
+          hintStyle: const TextStyle(fontWeight: FontWeight.bold)
+        ),
         controller: controller,
       )
     );

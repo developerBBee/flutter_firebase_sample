@@ -30,6 +30,9 @@ class RoundedPasswordField extends StatelessWidget{
         controller: controller,
         obscureText: obscureText,
         decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
+          hintText: "Password",
+          hintStyle: const TextStyle(fontWeight: FontWeight.bold),
           suffix: InkWell(
             child: obscureText ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
             onTap: toggleObsureText,
