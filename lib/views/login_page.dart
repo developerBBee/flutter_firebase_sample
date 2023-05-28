@@ -2,6 +2,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_test/details/rounded_button.dart';
 import 'package:flutter_application_test/details/rounded_password_field.dart';
 import 'package:flutter_application_test/details/rounded_text_field.dart';
 import 'package:flutter_application_test/models/main_model.dart';
@@ -49,13 +50,13 @@ class LoginPage extends ConsumerWidget {
             color: Colors.white,
             borderColor: Colors.red,
             shadowColor: Colors.blue,
+          ),
+          RoundedButton(
+            onPressed: () async => await loginModel.login(context: context, mainModel: mainModel),
+            widthRate: 0.8,
+            color: Colors.cyan,
           )
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async => await loginModel.login(context: context, mainModel: mainModel),
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }

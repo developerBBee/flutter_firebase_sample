@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_application_test/models/signup_model.dart';
 // components
 import 'package:flutter_application_test/details/rounded_text_field.dart';
+import 'package:flutter_application_test/details/rounded_button.dart';
 
 class SignupPage extends ConsumerWidget {
   const SignupPage({
@@ -43,13 +44,13 @@ class SignupPage extends ConsumerWidget {
             color: Colors.white,
             borderColor: Colors.red,
             shadowColor: Colors.orange,
-          )
+          ),
+          RoundedButton(
+            onPressed: () async => await signupModel.createUser(context: context),
+            widthRate: 0.8,
+            color: Colors.pink,
+          ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async => await signupModel.createUser(context: context),
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
