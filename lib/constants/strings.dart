@@ -6,6 +6,8 @@ const String loginTitle = "ログイン";
 const String loginEmailHint = "メールアドレス";
 const String loginText = "ログインする";
 
+const String logoutTitle = "ログアウト";
+
 const String aliceName = "Alice";
 
 const String usersFieldKey = "users";

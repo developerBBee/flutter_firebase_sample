@@ -66,11 +66,18 @@ class MyHomePage extends StatelessWidget {
               color: Colors.brown,
               buttonText: signupTitle,
             ),
+            Text("現在ログイン中のユーザーはAliceです"),
             RoundedButton(
               onPressed: () => routes.toLoginPage(context: context, mainModel: mainModel),
               widthRate: 0.5,
               color: Colors.blueGrey,
               buttonText: loginTitle,
+            ),
+            RoundedButton(
+              onPressed: () async => await mainModel.logout(context: context, mainModel: mainModel),
+              widthRate: 0.5,
+              color: Colors.deepOrange,
+              buttonText: logoutTitle,
             ),
           ],
         ),
