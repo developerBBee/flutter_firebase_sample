@@ -1,3 +1,5 @@
+const String appTitle = "Flutter Application Test";
+
 const String signupTitle = "新規登録";
 const String signupEmailHint = "メールアドレス";
 const String signupText = "新規登録を行う";
@@ -13,3 +15,5 @@ const String aliceName = "Alice";
 const String usersFieldKey = "users";
 
 const String message = "ユーザーが作成できました";
+
+const String loadingText = "読み込み中...";

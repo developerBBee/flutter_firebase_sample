@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_test/details/rounded_button.dart';
 import 'package:flutter_application_test/details/rounded_password_field.dart';
 import 'package:flutter_application_test/details/rounded_text_field.dart';
-import 'package:flutter_application_test/models/main_model.dart';
 // packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // models
@@ -14,9 +13,7 @@ import 'package:flutter_application_test/constants/strings.dart';
 class LoginPage extends ConsumerWidget {
   const LoginPage({
     Key? key,
-    required MainModel this.mainModel
   }) : super(key: key);
-  final MainModel mainModel;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -51,7 +48,7 @@ class LoginPage extends ConsumerWidget {
             shadowColor: Colors.blue,
           ),
           RoundedButton(
-            onPressed: () async => await loginModel.login(context: context, mainModel: mainModel),
+            onPressed: () async => await loginModel.login(context: context),
             widthRate: 0.8,
             color: Colors.cyan,
             buttonText: loginText,
