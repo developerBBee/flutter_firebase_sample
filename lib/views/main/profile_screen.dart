@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_test/details/user_image.dart';
 import 'package:flutter_application_test/models/main_model.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({
     Key? key,
     required this.mainModel,
@@ -9,18 +11,10 @@ class ProfileScreen extends StatelessWidget {
   final MainModel mainModel;
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          child: Text(
-            mainModel.firestoreUser.userName,
-            style: const TextStyle(fontSize: 50),
-          )
-        )
-      ]
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Container(
+      alignment: Alignment.center,
+      child: UserImage(length: 100.0, userImageUrl: mainModel.firestoreUser.userImageURL),
     );
   }
 }
