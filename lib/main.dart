@@ -1,7 +1,6 @@
 // flutter
 import 'package:flutter/material.dart';
-import 'package:flutter_application_test/constants/strings.dart';
-import 'package:flutter_application_test/details/rounded_button.dart';
+import 'package:flutter_application_test/details/sns_bottom_navigation_bar.dart';
 // package
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,10 +8,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 // models
 import 'package:flutter_application_test/models/main_model.dart';
+import 'package:flutter_application_test/models/sns_bottom_navigation_bar_model.dart';
 // options
 import 'firebase_options.dart';
 // constants
-import 'package:flutter_application_test/constants/routes.dart' as routes;
+import 'package:flutter_application_test/constants/strings.dart';
 // pages
 import 'package:flutter_application_test/views/login_page.dart';
 
@@ -53,6 +53,7 @@ class MyHomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final MainModel mainModel = ref.watch(mainProvider); // mainModel.init()が実行される
+    final SNSBottomNavigationBarModel snsBottomNavigationBarModel = ref.watch(snsBottomNavigationBarProvider);
     final createdTimestamp = mainModel.currentUserDoc["createdAt"] as Timestamp;
     final createdDateTime = createdTimestamp.toDate();
 
@@ -61,39 +62,18 @@ class MyHomePage extends ConsumerWidget {
         title: Text(title),
       ),
       body: mainModel.isLoading? const Center(child: CircularProgressIndicator()) :
-      Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround, // 縦方向に均等に配置
-          children: [
-            RoundedButton(
-              onPressed: () => routes.toSignupPage(context: context),
-              widthRate: 0.5,
-              color: Colors.brown,
-              buttonText: signupTitle,
-            ),
-            Center(
-              // OVU4cR6IiROm42BEC3nwscTC1OM2
-              //child: Text("Uidは${mainModel.currentUserDoc["uid"]}です"),
-              //child: Text("Uidは${mainModel.currentUserDoc.id}です"),
-              //child: Text("Uidは${mainModel.currentUser!.uid}です"),
-              // Created datetime
-              child: Text("作成日は$createdDateTimeです"),
-            ),
-            RoundedButton(
-              onPressed: () => routes.toLoginPage(context: context),
-              widthRate: 0.5,
-              color: Colors.blueGrey,
-              buttonText: loginTitle,
-            ),
-            RoundedButton(
-              onPressed: () async => await mainModel.logout(context: context, mainModel: mainModel),
-              widthRate: 0.5,
-              color: Colors.deepOrange,
-              buttonText: logoutTitle,
-            ),
-          ],
-        ),
-      )
+      PageView(
+        controller: snsBottomNavigationBarModel.pageController,
+        onPageChanged: (index) => snsBottomNavigationBarModel.onPageChanged(index: index),
+        children: [
+          Container(child: Text(homeTitle),),
+          Container(child: Text(searchTitle),),
+          Container(child: Text(profileTitle),),
+        ],
+      ),
+      bottomNavigationBar: SNSBottomNavigationBar(
+        snsBottomNavigationBarModel: snsBottomNavigationBarModel
+      ),
     );
   }
 }

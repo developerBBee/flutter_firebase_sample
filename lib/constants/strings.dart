@@ -17,3 +17,8 @@ const String usersFieldKey = "users";
 const String message = "ユーザーが作成できました";
 
 const String loadingText = "読み込み中...";
+
+// BottomNavigationBar
+const String homeTitle = "ホーム";
+const String searchTitle = "検索";
+const String profileTitle = "プロフィール";
