@@ -15,6 +15,9 @@ import 'firebase_options.dart';
 import 'package:flutter_application_test/constants/strings.dart';
 // pages
 import 'package:flutter_application_test/views/login_page.dart';
+import 'package:flutter_application_test/views/main/home_screen.dart';
+import 'package:flutter_application_test/views/main/search_screen.dart';
+import 'package:flutter_application_test/views/main/profile_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -66,9 +69,9 @@ class MyHomePage extends ConsumerWidget {
         controller: snsBottomNavigationBarModel.pageController,
         onPageChanged: (index) => snsBottomNavigationBarModel.onPageChanged(index: index),
         children: [
-          Container(child: Text(homeTitle),),
-          Container(child: Text(searchTitle),),
-          Container(child: Text(profileTitle),),
+          HomeScreen(),
+          SearchScreen(),
+          ProfileScreen(mainModel: mainModel,),
         ],
       ),
       bottomNavigationBar: SNSBottomNavigationBar(

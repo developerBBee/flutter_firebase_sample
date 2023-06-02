@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // packages
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_application_test/constants/strings.dart';
+import 'package:flutter_application_test/domain/firestore_user/firestore_user.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // route
@@ -18,6 +19,7 @@ class MainModel extends ChangeNotifier {
   int counter = 0; // 変数の先頭に_はprivateなので、つけないようにする
   User? currentUser = null;
   late DocumentSnapshot<Map<String, dynamic>> currentUserDoc;
+  late FirestoreUser firestoreUser;
 
   // Constructor
   MainModel() {
@@ -30,7 +32,7 @@ class MainModel extends ChangeNotifier {
     // OVU4cR6IiROm42BEC3nwscTC1OM2
     currentUserDoc = await FirebaseFirestore.instance.collection(usersFieldKey)
         .doc(currentUser!.uid).get();
-    notifyListeners();
+    firestoreUser = FirestoreUser.fromJson(currentUserDoc.data()!);
     endLoading();
   }
 
