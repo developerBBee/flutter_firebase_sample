@@ -37,9 +37,10 @@ class SignupModel extends ChangeNotifier {
     final FirestoreUser user = FirestoreUser(
       createdAt: now,
       email: email,
-      updatedAt: now,
       userName: aliceName,
+      userImageURL: '', // TODO: 画像URLを設定する
       uid: uid,
+      updatedAt: now,
     );
     final Map<String, dynamic> userData = user.toJson();
     await FirebaseFirestore.instance
