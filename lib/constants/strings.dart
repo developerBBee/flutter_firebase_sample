@@ -31,3 +31,6 @@ String getUUID() {
   return uuid.v4();
 }
 String jpgUuidFileName = "${getUUID()}.jpg";
+
+// ImagePicker
+const String cropperTitle = "Cropper";

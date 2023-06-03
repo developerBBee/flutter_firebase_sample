@@ -16,16 +16,14 @@ class ProfileScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final ProfileModel profileModel = ref.watch(profileProvider);
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // ユーザーアイコン
-        profileModel.xFile == null ?
-        // Nullの場合は、アイコンを表示する
-        Container(
-          alignment: Alignment.center,
-          child: UserImage(length: 100.0, userImageUrl: mainModel.firestoreUser.userImageURL,),
-        ) :
-        // Nullでない場合は、Loadingを表示する
-        const Text("Now Loading..."),
+        profileModel.croppedFile == null ?
+        UserImage(length: 100.0, userImageUrl: mainModel.firestoreUser.userImageURL,) 
+        : ClipRRect(
+          borderRadius: BorderRadius.circular(160.0),
+          child: Image.file(profileModel.croppedFile!),
+        ),
 
         // ボタン
         RoundedButton(

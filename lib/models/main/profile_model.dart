@@ -16,11 +16,7 @@ import 'package:image_picker/image_picker.dart';
 final profileProvider = ChangeNotifierProvider((_) => ProfileModel());
 
 class ProfileModel extends ChangeNotifier {
-  XFile? xFile;
-
-  Future<void> pickImage() async {
-    xFile = await returnXfile();
-  }
+  File? croppedFile;
 
   /// 非同期で画像をアップロードして、画像のURLを返す
   Future<String> uploadImageAndGetURL({
@@ -39,9 +35,10 @@ class ProfileModel extends ChangeNotifier {
   Future<void> uploadUserImage({
     required DocumentSnapshot<Map<String, dynamic>> currentUserDoc,
   }) async {
-    xFile = await returnXfile();
-    final File file = File(xFile!.path);
+    final XFile xFile = await returnXfile();
+    final File file = File(xFile.path);
     final String uid = currentUserDoc.id;
+    croppedFile = await returnCroppedFile(xfile: xFile);
     final String url = await uploadImageAndGetURL(uid: uid, file: file);
     await currentUserDoc.reference.update({
       "userImageURL": url,
