@@ -65,7 +65,7 @@ class MyHomePage extends ConsumerWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      drawer: SNSDrawer(),
+      drawer: SNSDrawer(mainModel: mainModel),
       body: mainModel.isLoading? const Center(child: CircularProgressIndicator()) :
       PageView(
         controller: snsBottomNavigationBarModel.pageController,

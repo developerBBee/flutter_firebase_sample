@@ -52,9 +52,19 @@ class MainModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> logout({required BuildContext context, required MainModel mainModel}) async {
+  Future<void> logout({required BuildContext context}) async {
     await FirebaseAuth.instance.signOut();
     setCurrentUser();
     routes.toLoginPage(context: context);
+  }
+
+  // altanative logout with sync
+  void logout2({required BuildContext context}) {
+    signOut();
+    routes.toLoginPage(context: context);
+  }
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+    setCurrentUser();
   }
 }
