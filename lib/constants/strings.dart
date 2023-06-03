@@ -10,7 +10,10 @@ const String loginTitle = "ログイン";
 const String loginEmailHint = "メールアドレス";
 const String loginText = "ログインする";
 
+const String accountTitle = "アカウント";
+
 const String logoutTitle = "ログアウト";
+const String logoutText = "ログアウト";
 
 const String aliceName = "Alice";
 

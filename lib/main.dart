@@ -1,6 +1,7 @@
 // flutter
 import 'package:flutter/material.dart';
 import 'package:flutter_application_test/details/sns_bottom_navigation_bar.dart';
+import 'package:flutter_application_test/details/sns_drawer.dart';
 // package
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -64,6 +65,7 @@ class MyHomePage extends ConsumerWidget {
       appBar: AppBar(
         title: Text(title),
       ),
+      drawer: SNSDrawer(),
       body: mainModel.isLoading? const Center(child: CircularProgressIndicator()) :
       PageView(
         controller: snsBottomNavigationBarModel.pageController,

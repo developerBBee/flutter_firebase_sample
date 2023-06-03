@@ -1,8 +1,9 @@
 // flutter
 import 'package:flutter/material.dart';
-import 'package:flutter_application_test/main.dart';
 
 // pages
+import 'package:flutter_application_test/main.dart';
+import 'package:flutter_application_test/views/account_page.dart';
 import 'package:flutter_application_test/views/signup_page.dart';
 import 'package:flutter_application_test/views/login_page.dart';
 
@@ -29,6 +30,15 @@ void toLoginPage({ required BuildContext context }) => {
     context,
     MaterialPageRoute( // 画面遷移
       builder: (context) => const LoginPage(),
+    ),
+  )
+};
+
+void toAccountPage({ required BuildContext context }) => {
+  Navigator.push(
+    context,
+    MaterialPageRoute( // 画面遷移
+      builder: (context) => const AccountPage(),
     ),
   )
 };
