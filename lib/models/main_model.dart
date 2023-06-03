@@ -17,7 +17,7 @@ final mainProvider = ChangeNotifierProvider((_) => MainModel());
 class MainModel extends ChangeNotifier {
   bool isLoading = false;
   int counter = 0; // 変数の先頭に_はprivateなので、つけないようにする
-  User? currentUser = null;
+  User? currentUser;
   late DocumentSnapshot<Map<String, dynamic>> currentUserDoc;
   late FirestoreUser firestoreUser;
 
@@ -32,6 +32,7 @@ class MainModel extends ChangeNotifier {
     // OVU4cR6IiROm42BEC3nwscTC1OM2
     currentUserDoc = await FirebaseFirestore.instance.collection(usersFieldKey)
         .doc(currentUser!.uid).get();
+    // currentUserDocのJsonデータをFirestoreUserオブジェクトに変換
     firestoreUser = FirestoreUser.fromJson(currentUserDoc.data()!);
     endLoading();
   }
