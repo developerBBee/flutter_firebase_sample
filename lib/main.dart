@@ -1,7 +1,9 @@
 // flutter
 import 'package:flutter/material.dart';
+import 'package:flutter_application_test/constants/themes.dart';
 import 'package:flutter_application_test/details/sns_bottom_navigation_bar.dart';
 import 'package:flutter_application_test/details/sns_drawer.dart';
+import 'package:flutter_application_test/models/themes_model.dart';
 // package
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -28,32 +30,38 @@ void main() async {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   // StatelessWidgetは状態変更なしのウィジェット
 
   // Constructor
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final User? onceUser = FirebaseAuth.instance.currentUser; // MyApp起動時にログインしているかどうかを確認
+    final ThemesModel themesModel = ref.watch(themeProvider);
     return MaterialApp(
       debugShowCheckedModeBanner: false, // デバッグバナーを非表示にする
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: themesModel.isDarkTheme
+          ? darkThemeData(context: context)
+          : lightThemeData(context: context),
       home: onceUser == null
           ? const LoginPage()
-          : const MyHomePage(title: appTitle)
+          : MyHomePage(title: appTitle, themesModel: themesModel)
     );
   }
 }
 
 class MyHomePage extends ConsumerWidget {
   // ConsumerWidgetはStateFulWidgetを継承している
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({
+    super.key,
+    required this.title,
+    required this.themesModel,
+  });
   final String title;
+  final ThemesModel themesModel;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final MainModel mainModel = ref.watch(mainProvider); // mainModel.init()が実行される
@@ -65,7 +73,7 @@ class MyHomePage extends ConsumerWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      drawer: SNSDrawer(mainModel: mainModel),
+      drawer: SNSDrawer(mainModel: mainModel, themesModel: themesModel,),
       body: mainModel.isLoading? const Center(child: CircularProgressIndicator()) :
       PageView(
         controller: snsBottomNavigationBarModel.pageController,
