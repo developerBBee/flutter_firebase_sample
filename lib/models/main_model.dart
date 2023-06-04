@@ -21,6 +21,9 @@ class MainModel extends ChangeNotifier {
   late DocumentSnapshot<Map<String, dynamic>> currentUserDoc;
   late FirestoreUser firestoreUser;
 
+  // tokens
+  List<String> followingUids = [];
+
   // Constructor
   MainModel() {
     init();

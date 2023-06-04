@@ -16,6 +16,8 @@ const String logoutTitle = "ログアウト";
 const String logoutText = "ログアウト";
 
 const String uploadText = "アップロード";
+const String followText = "フォロー";
+const String unFollowText = "フォロー解除";
 
 const String themeTitle = "テーマ";
 

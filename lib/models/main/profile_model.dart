@@ -7,6 +7,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_test/constants/others.dart';
 import 'package:flutter_application_test/constants/strings.dart';
+import 'package:flutter_application_test/domain/firestore_user/firestore_user.dart';
+import 'package:flutter_application_test/models/main_model.dart';
 
 // packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -42,6 +44,22 @@ class ProfileModel extends ChangeNotifier {
     await currentUserDoc.reference.update({
       "userImageURL": url,
     });
+    notifyListeners();
+  }
+
+  void follow({
+    required MainModel mainModel,
+    required FirestoreUser passiveFirestoreUser,
+  }) {
+    mainModel.followingUids.add(passiveFirestoreUser.uid);
+    notifyListeners();
+  }
+
+  void unFollow({
+    required MainModel mainModel,
+    required FirestoreUser passiveFirestoreUser,
+  }) {
+    mainModel.followingUids.remove(passiveFirestoreUser.uid);
     notifyListeners();
   }
 }
