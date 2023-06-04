@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_test/constants/strings.dart';
 import 'package:flutter_application_test/details/rounded_button.dart';
 import 'package:flutter_application_test/details/user_image.dart';
+import 'package:flutter_application_test/domain/firestore_user/firestore_user.dart';
 import 'package:flutter_application_test/models/main/profile_model.dart';
 import 'package:flutter_application_test/models/main_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,14 +17,33 @@ class ProfileScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final ProfileModel profileModel = ref.watch(profileProvider);
+    final FirestoreUser firestoreUser = mainModel.firestoreUser;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         profileModel.croppedFile == null ?
-        UserImage(length: 100.0, userImageUrl: mainModel.firestoreUser.userImageURL,) 
+        UserImage(length: 100.0, userImageUrl: firestoreUser.userImageURL,) 
         : ClipRRect(
           borderRadius: BorderRadius.circular(160.0),
           child: Image.file(profileModel.croppedFile!),
+        ),
+
+        // フォロー数
+        Text(
+          "フォロー中 ${firestoreUser.followingsCount}",
+          style: const TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+
+        // フォロワー数
+        Text(
+          "フォロワー ${firestoreUser.followersCount}",
+          style: const TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+          ),
         ),
 
         // ボタン
@@ -30,7 +51,7 @@ class ProfileScreen extends ConsumerWidget {
           onPressed: () async => await profileModel.uploadUserImage(currentUserDoc: mainModel.currentUserDoc),
           widthRate: 0.85,
           color: Colors.green,
-          buttonText: "Upload"
+          buttonText: uploadText,
         ),
       ],
     );

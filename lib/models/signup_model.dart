@@ -37,6 +37,8 @@ class SignupModel extends ChangeNotifier {
     final FirestoreUser user = FirestoreUser(
       createdAt: now,
       email: email,
+      followersCount: 0,
+      followingsCount: 0,
       userName: aliceName,
       userImageURL: '', // TODO: 画像URLを設定する
       uid: uid,

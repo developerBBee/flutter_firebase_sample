@@ -15,6 +15,8 @@ const String accountTitle = "アカウント";
 const String logoutTitle = "ログアウト";
 const String logoutText = "ログアウト";
 
+const String uploadText = "アップロード";
+
 const String themeTitle = "テーマ";
 
 const String aliceName = "Alice";
