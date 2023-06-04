@@ -26,6 +26,7 @@ const String aliceName = "Alice";
 const String usersFieldKey = "users";
 const String tokensFieldKey = "tokens";
 
+const String noAccountMsg = "アカウントをお持ちでない方はこちら";
 const String message = "ユーザーが作成できました";
 
 const String loadingText = "読み込み中...";

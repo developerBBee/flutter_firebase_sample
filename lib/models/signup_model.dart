@@ -11,6 +11,7 @@ import 'package:flutter_application_test/domain/firestore_user/firestore_user.da
 
 // constants
 import 'package:flutter_application_test/constants/strings.dart';
+import 'package:flutter_application_test/constants/routes.dart' as routes;
 
 // ViewとModelの橋渡しとなるProvider
 final signupProvider = ChangeNotifierProvider((_) => SignupModel());
@@ -62,9 +63,10 @@ class SignupModel extends ChangeNotifier {
     try {
       UserCredential result = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-      User? user = result.user;
+      final User? user = result.user;
       final String uid = user!.uid;
-      createFirestoreUser(context: context, uid: uid);
+      await createFirestoreUser(context: context, uid: uid);
+      routes.toMyApp(context: context);
     } on FirebaseAuthException catch (e) {
       // error message
       print(e.toString());

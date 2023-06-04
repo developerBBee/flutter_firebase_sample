@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_application_test/models/login_model.dart';
 // constants
 import 'package:flutter_application_test/constants/strings.dart';
+import 'package:flutter_application_test/constants/routes.dart' as routes;
 
 class LoginPage extends ConsumerWidget {
   const LoginPage({
@@ -34,6 +35,7 @@ class LoginPage extends ConsumerWidget {
             onChanged: (text) => loginModel.email = text,
             controller: emailController,
             color: Colors.white,
+            textColor: Colors.black,
             borderColor: Colors.red,
             shadowColor: Colors.green,
             hintText: loginEmailHint,
@@ -44,6 +46,7 @@ class LoginPage extends ConsumerWidget {
             obscureText: loginModel.isObscure,
             toggleObsureText: () => loginModel.toggleObscure(),
             color: Colors.white,
+            textColor: Colors.black,
             borderColor: Colors.red,
             shadowColor: Colors.blue,
           ),
@@ -52,6 +55,10 @@ class LoginPage extends ConsumerWidget {
             widthRate: 0.8,
             color: Colors.cyan,
             buttonText: loginText,
+          ),
+          TextButton(
+            onPressed: () => routes.toSignupPage(context: context),
+            child: const Text(noAccountMsg),
           )
         ],
       ),

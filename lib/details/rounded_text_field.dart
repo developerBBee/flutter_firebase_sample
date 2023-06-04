@@ -8,6 +8,7 @@ class RoundedTextField extends StatelessWidget{
     required this.onChanged,
     required this.controller,
     required this.color,
+    required this.textColor,
     required this.borderColor,
     required this.shadowColor,
     required this.hintText,
@@ -16,6 +17,7 @@ class RoundedTextField extends StatelessWidget{
   final void Function(String)? onChanged;
   final TextEditingController controller;
   final Color color;
+  final Color textColor;
   final Color borderColor;
   final Color shadowColor;
   final String hintText;
@@ -27,7 +29,7 @@ class RoundedTextField extends StatelessWidget{
       borderColor: borderColor,
       shadowColor: shadowColor,
       child: TextFormField(
-        
+        style: TextStyle(color: textColor),
         keyboardType: keyboardType,
         onChanged: onChanged,
         decoration: InputDecoration(

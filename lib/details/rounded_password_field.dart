@@ -9,6 +9,7 @@ class RoundedPasswordField extends StatelessWidget{
     required this.obscureText,
     required this.toggleObsureText,
     required this.color,
+    required this.textColor,
     required this.borderColor,
     required this.shadowColor,
   }) : super(key: key);
@@ -16,7 +17,7 @@ class RoundedPasswordField extends StatelessWidget{
   final TextEditingController controller;
   final bool obscureText;
   final void Function()? toggleObsureText;
-  final Color color, borderColor, shadowColor;
+  final Color color, textColor, borderColor, shadowColor;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +26,7 @@ class RoundedPasswordField extends StatelessWidget{
       borderColor: borderColor,
       shadowColor: shadowColor,
       child: TextFormField(
+        style: TextStyle(color: textColor),
         keyboardType: TextInputType.visiblePassword,
         onChanged: onChanged,
         controller: controller,
@@ -32,9 +34,14 @@ class RoundedPasswordField extends StatelessWidget{
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
           hintText: "Password",
-          hintStyle: const TextStyle(fontWeight: FontWeight.bold),
+          hintStyle: TextStyle(
+            color: Color(textColor.value - 0x80000000),
+            fontWeight: FontWeight.bold
+          ),
           suffix: InkWell(
-            child: obscureText ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
+            child: obscureText
+                ? Icon(Icons.visibility_off, color: textColor)
+                : Icon(Icons.visibility, color: textColor),
             onTap: toggleObsureText,
           )),
       )
