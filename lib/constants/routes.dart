@@ -1,9 +1,11 @@
 // flutter
 import 'package:flutter/material.dart';
+import 'package:flutter_application_test/domain/firestore_user/firestore_user.dart';
 
 // pages
 import 'package:flutter_application_test/main.dart';
 import 'package:flutter_application_test/views/account_page.dart';
+import 'package:flutter_application_test/views/main/passive_user_profile_page.dart';
 import 'package:flutter_application_test/views/signup_page.dart';
 import 'package:flutter_application_test/views/login_page.dart';
 
@@ -42,6 +44,18 @@ void toAccountPage({ required BuildContext context, required MainModel mainModel
     context,
     MaterialPageRoute( // 画面遷移
       builder: (context) => AccountPage(mainModel: mainModel),
+    ),
+  )
+};
+
+void toPassiveUserProfilePage({
+  required BuildContext context,
+  required FirestoreUser passiveUser
+}) => {
+  Navigator.push(
+    context,
+    MaterialPageRoute( // 画面遷移
+      builder: (context) => PassiveUserProfilePage(passiveUser: passiveUser),
     ),
   )
 };
