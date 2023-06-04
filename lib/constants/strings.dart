@@ -24,6 +24,7 @@ const String themeTitle = "テーマ";
 const String aliceName = "Alice";
 
 const String usersFieldKey = "users";
+const String tokensFieldKey = "tokens";
 
 const String message = "ユーザーが作成できました";
 
