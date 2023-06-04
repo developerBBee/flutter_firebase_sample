@@ -39,3 +39,6 @@ String jpgUuidFileName = "${getUUID()}.jpg";
 
 // ImagePicker
 const String cropperTitle = "Cropper";
+
+// Key names
+const String isDarkThemeKey = "isDarkTheme";
