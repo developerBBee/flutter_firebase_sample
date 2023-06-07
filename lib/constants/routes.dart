@@ -50,12 +50,13 @@ void toAccountPage({ required BuildContext context, required MainModel mainModel
 
 void toPassiveUserProfilePage({
   required BuildContext context,
-  required FirestoreUser passiveUser
+  required FirestoreUser passiveUser,
+  required MainModel mainModel
 }) => {
   Navigator.push(
     context,
     MaterialPageRoute( // 画面遷移
-      builder: (context) => PassiveUserProfilePage(passiveUser: passiveUser),
+      builder: (context) => PassiveUserProfilePage(passiveUser: passiveUser, mainModel: mainModel),
     ),
   )
 };

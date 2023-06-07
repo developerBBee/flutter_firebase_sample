@@ -18,9 +18,7 @@ class ProfileScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final ProfileModel profileModel = ref.watch(profileProvider);
     final FirestoreUser firestoreUser = mainModel.firestoreUser;
-    final int followersCount = firestoreUser.followersCount;
-    final int plusOneCount = followersCount + 1;
-    final bool isFollowed = mainModel.followingUids.contains(firestoreUser.uid);
+
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -43,9 +41,7 @@ class ProfileScreen extends ConsumerWidget {
 
         // フォロワー数
         Text(
-          isFollowed
-              ? "フォロワー $plusOneCount"
-              : "フォロワー ${firestoreUser.followersCount}",
+          "フォロワー ${firestoreUser.followersCount}",
           style: const TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
@@ -59,21 +55,6 @@ class ProfileScreen extends ConsumerWidget {
           color: Colors.green,
           buttonText: uploadText,
         ),
-
-        // フォロー/アンフォローボタン
-        isFollowed
-            ? RoundedButton(
-              onPressed: () => profileModel.unFollow(mainModel: mainModel, passiveFirestoreUser: firestoreUser),
-              widthRate: 0.85,
-              color: Colors.deepOrange,
-              buttonText: unFollowText,
-            )
-            : RoundedButton(
-              onPressed: () => profileModel.follow(mainModel: mainModel, passiveFirestoreUser: firestoreUser),
-              widthRate: 0.85,
-              color: Colors.green,
-              buttonText: followText,
-            ),
       ],
     );
   }
